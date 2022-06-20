@@ -15,8 +15,8 @@ import { cdf } from '../utils/cdf';
 
 export default function DashboardApp() {
   const theme = useTheme();
-  const mydata = Array.from({length: 3000}, () => Math.floor(Math.random() * 100)+1);
-  const cdfCalculator  = cdf(mydata);
+  const sampleData = Array.from({length: 30}, () => Math.floor(Math.random() * (0 - 3) + 3)).concat(Array.from({length: 2500}, () => Math.floor(Math.random() * (10 - 30) + 30)).concat(Array.from({length: 30}, () => Math.random() * (100 - 120) + 120)));
+  const cdfCalculator  = cdf(sampleData);
   return (
     <Page title="Dashboard">
       <Container maxWidth="xl">
@@ -71,8 +71,9 @@ export default function DashboardApp() {
               chartData={[
                 {
                   name: 'AWS',
-                  type: 'column',
+                  type: 'line',
                   fill: 'solid',
+                  color:theme.palette.chart.red[0],
                   data: [23, 11, 22, 27, 13, 22, 37, 21, 44, 22, 30,22,23, 41, 22, 27, 13, 22, 37, 21],
                 },
                 // {
@@ -117,6 +118,7 @@ export default function DashboardApp() {
                   name: 'AWS',
                   type: 'line',
                   fill: 'solid',
+                  color: theme.palette.primary.main,
                   data: [23, 11, 22, 27, 13, 22, 37, 21, 44, 22, 30,22,23, 41, 22, 27, 13, 22, 37, 21],
                 },
                 
@@ -135,6 +137,7 @@ export default function DashboardApp() {
                   name: 'AWS',
                   type: 'line',
                   fill: 'solid',
+                  color:theme.palette.chart.yellow[0],
                   data: cdfCalculator.ps(),
                 },
               ]}
