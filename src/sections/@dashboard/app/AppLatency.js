@@ -18,7 +18,11 @@ AppLatency.propTypes = {
 export default function AppLatency({ title, subheader, chartLabels, chartData, ...other }) {
   const chartOptions = merge(BaseOptionChart(), {
     plotOptions: { bar: { columnWidth: '16%' } },
-    fill: { type: chartData.map((i) => i.fill) },
+    fill: { 
+      type: chartData.map((i) => i.fill),
+      colors: chartData.map((i) => i.color),
+      opacity:1,
+    },
     labels: chartLabels,
     xaxis: { type: 'datetime' },
     yaxis:{
@@ -28,7 +32,6 @@ export default function AppLatency({ title, subheader, chartLabels, chartData, .
       },
       stroke: {
         curve: 'straight',
-        colors:['red']
       },
     tooltip: {
       shared: true,
